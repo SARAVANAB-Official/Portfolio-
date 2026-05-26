@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FiExternalLink, FiGithub } from 'react-icons/fi'
 
@@ -18,13 +18,18 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
   const [rotateX, setRotateX] = useState(0)
   const [rotateY, setRotateY] = useState(0)
   const [glowX, setGlowX] = useState(50)
   const [glowY, setGlowY] = useState(50)
 
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
+
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!ref.current) return
+    if (!ref.current || isTouchDevice) return
     const rect = ref.current.getBoundingClientRect()
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
@@ -37,6 +42,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   }
 
   const handleMouseLeave = () => {
+    if (isTouchDevice) return
     setRotateX(0)
     setRotateY(0)
     setGlowX(50)

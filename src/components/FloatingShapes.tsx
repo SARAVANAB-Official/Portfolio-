@@ -36,7 +36,7 @@ export default function FloatingShapes() {
   const shapes = useMemo(() => generateShapes(), [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden -z-5">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10">
       {shapes.map((shape) => (
         <motion.div
           key={shape.id}

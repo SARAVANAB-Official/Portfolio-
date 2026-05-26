@@ -69,7 +69,7 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
-          <div className="absolute left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[#6366F1]/40 via-[#8B5CF6]/20 to-transparent" />
+          <div className="absolute left-5 md:left-8 top-0 bottom-0 w-[1px] bg-gradient-to-b from-[#6366F1]/40 via-[#8B5CF6]/20 to-transparent" />
 
           <div className="space-y-8">
             {experiences.map((item, index) => (
@@ -79,10 +79,10 @@ export default function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative pl-16"
+                className="relative pl-12 md:pl-16"
               >
                 <div
-                  className="absolute left-4 top-0 w-8 h-8 rounded-xl flex items-center justify-center border"
+                  className="absolute left-1 md:left-4 top-0 w-7 md:w-8 h-7 md:h-8 rounded-xl flex items-center justify-center border"
                   style={{
                     background: `${item.color}15`,
                     borderColor: `${item.color}30`,

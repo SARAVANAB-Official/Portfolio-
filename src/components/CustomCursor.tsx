@@ -6,12 +6,18 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
   const cursorX = useMotionValue(-100)
   const cursorY = useMotionValue(-100)
   const springX = useSpring(cursorX, { stiffness: 500, damping: 28 })
   const springY = useSpring(cursorY, { stiffness: 500, damping: 28 })
 
   useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
+
+  useEffect(() => {
+    if (isTouchDevice) return
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16)
       cursorY.set(e.clientY - 16)
@@ -36,7 +42,7 @@ export default function CustomCursor() {
     }
   }, [cursorX, cursorY, isVisible])
 
-  if (typeof window === 'undefined') return null
+  if (typeof window === 'undefined' || isTouchDevice) return null
 
   return (
     <>

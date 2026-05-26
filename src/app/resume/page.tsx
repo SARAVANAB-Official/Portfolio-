@@ -34,7 +34,7 @@ export default function ResumePage() {
                 Building scalable SaaS platforms, AI-powered applications, and modern digital experiences.
               </p>
             </div>
-            <div className="space-y-2 text-sm text-gray-600 shrink-0">
+            <div className="space-y-2 text-sm text-gray-600 shrink-0 break-all sm:break-normal">
               <div className="flex items-center gap-2"><FiMail className="w-4 h-4 text-[#6366F1]" /> saravanbofficials@gmail.com</div>
               <div className="flex items-center gap-2"><FiMapPin className="w-4 h-4 text-[#6366F1]" /> Tamil Nadu, India</div>
               <div className="flex items-center gap-2"><FiGithub className="w-4 h-4 text-[#6366F1]" /> github.com/SARAVANAB-Official</div>

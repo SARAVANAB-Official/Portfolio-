@@ -84,7 +84,7 @@ export default function Navigation() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg glass-card"
+            className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg bg-white/[0.06] border border-white/[0.08]"
             aria-label="Toggle menu"
           >
             {isOpen ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
@@ -101,7 +101,7 @@ export default function Navigation() {
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="md:hidden overflow-hidden border-t border-white/[0.06]"
           >
-            <div className="px-4 py-4 space-y-1 bg-[#020617]/95 backdrop-blur-xl">
+            <div className="px-4 py-3 space-y-0.5 bg-[#020617]/95 backdrop-blur-xl">
               {navLinks.map((link) => (
                 <motion.a
                   key={link.name}
