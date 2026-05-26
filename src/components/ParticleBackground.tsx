@@ -1,11 +1,24 @@
 'use client'
 
-import { useMemo } from 'react'
-import { Particles, ParticlesProvider } from '@tsparticles/react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import Particles from '@tsparticles/react'
 import { loadSlim } from '@tsparticles/slim'
 import type { ISourceOptions, Engine } from '@tsparticles/engine'
 
-function ParticlesContent() {
+export default function ParticleBackground() {
+  const [init, setInit] = useState(false)
+
+  useEffect(() => {
+    const initEngine = async () => {
+      const { initParticlesEngine } = await import('@tsparticles/react')
+      await initParticlesEngine(async (engine: Engine) => {
+        await loadSlim(engine)
+      })
+      setInit(true)
+    }
+    initEngine()
+  }, [])
+
   const options: ISourceOptions = useMemo(() => ({
     fullScreen: { enable: false, zIndex: 0 },
     fpsLimit: 60,
@@ -49,19 +62,11 @@ function ParticlesContent() {
     detectRetina: true
   }), [])
 
+  if (!init) return null
+
   return (
     <div className="absolute inset-0 -z-10">
       <Particles id="tsparticles" options={options} className="w-full h-full" />
     </div>
-  )
-}
-
-export default function ParticleBackground() {
-  return (
-    <ParticlesProvider init={async (engine: Engine) => {
-      await loadSlim(engine)
-    }}>
-      <ParticlesContent />
-    </ParticlesProvider>
   )
 }
